@@ -262,8 +262,9 @@ export default class ChatEditor extends Component {
       return <Loader />
     }*/
 
-    const serializedContent = this.state.serialized ? 
-    this.state.serialized : null
+    const serializedContent = null
+    /*this.state.serialized ? 
+    this.state.serialized : null*/
 
     return <ThemeProvider theme={theme}>
               <EditorContainer>
