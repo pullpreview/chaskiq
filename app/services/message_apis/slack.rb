@@ -342,13 +342,12 @@ module MessageApis
       event = params["event"]
       puts "processing slack event type: #{event['type']}"
       case event['type']
-      when 'message' then process_message(event)
+      when 'message' 
+        process_message(event) if event['subtype'].blank?
       end
     end
 
     def process_message(event)
-
-      #@package.app.conversations
       conversation = @package
       .app
       .conversations
@@ -481,7 +480,6 @@ module MessageApis
     # triggered when a new chaskiq message is created
     # will triggered just after the ws notification
     def notify_message(conversation: , part:, channel:)
-
       # TODO ? redis cache here for provider / channel id / part
       return if part.conversation_part_channel_sources.find_by(provider: "slack").present?
       
